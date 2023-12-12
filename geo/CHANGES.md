@@ -41,6 +41,8 @@
   implemented for `CoordsIter` without re-allocating (e.g., creating a `MultiPoint`).
 * Add `compose_many` method to `AffineOps`
   * <https://github.com/georust/geo/pull/1148>
+* Add `Stitch` trait which implements a new kind of combining algorithm for geometries
+  * <https://github.com/georust/geo/pull/1087>
 
 ## 0.27.0
 
@@ -74,8 +76,6 @@
   * <https://github.com/georust/geo/pull/1083>
 * Add `len()` and `is_empty()` to `MultiPoint`
   * <https://github.com/georust/geo/pull/1109>
-* Add `Stitch` trait which implements a new kind of combining algorithm for geometries
-  * <https://github.com/georust/geo/pull/1087>
 
 ## 0.26.0
 
