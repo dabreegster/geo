@@ -43,6 +43,8 @@
   * <https://github.com/georust/geo/pull/1148>
 * Add `Stitch` trait which implements a new kind of combining algorithm for geometries
   * <https://github.com/georust/geo/pull/1087>
+* Add `SpadeBoolops` trait which implements panic-less boolean operations based on triangulation
+  * <https://github.com/georust/geo/pull/1089>
 
 ## 0.27.0
 
