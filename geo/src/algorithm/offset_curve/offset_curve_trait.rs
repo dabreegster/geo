@@ -130,7 +130,7 @@ where
         let mut offset_points = Vec::with_capacity(self.0.len());
 
         for item in self.iter_offset_segment_pairs(distance) {
-            println!("{item:?}");
+            //println!("{item:?}");
             if let OffsetSegmentsIteratorItem {
                 ab_offset: Some(LineMeasured { line, .. }),
                 first: true,
