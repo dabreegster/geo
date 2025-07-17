@@ -11,6 +11,7 @@ use crate::geometry::{
     Coord, Geometry, GeometryCollection, Line, LineString, MultiLineString, MultiPoint,
     MultiPolygon, Point, Polygon, Rect, Triangle,
 };
+use i_overlay::i_float::float::number::FloatNumber;
 use i_overlay::mesh::{
     outline::offset::OutlineOffset,
     stroke::offset::StrokeOffset,
@@ -293,8 +294,8 @@ impl<F: BoolOpsNum + 'static> Buffer for Point<F> {
                             + std::f64::consts::PI,
                     )
                     .expect("valid float constant");
-                    let x = center.x + radius * angle.cos();
-                    let y = center.y + radius * angle.sin();
+                    let x = center.x + radius * FloatNumber::cos(angle);
+                    let y = center.y + radius * FloatNumber::sin(angle);
                     coords.push(Coord { x, y });
                 }
                 // Close the ring
@@ -393,7 +394,7 @@ impl<F: BoolOpsNum + 'static> Buffer for Polygon<F> {
     fn buffer_with_style(&self, style: BufferStyle<Self::Scalar>) -> MultiPolygon<Self::Scalar> {
         let rewound = self.orient(Direction::Reversed);
         let subject = rewound.rings().map(ring_to_shape_path).collect::<Vec<_>>();
-        let shapes = subject.outline(style.outline_style());
+        let shapes = subject.outline(&style.outline_style());
         multi_polygon_from_shapes(shapes)
     }
 }
@@ -403,7 +404,7 @@ impl<F: BoolOpsNum + 'static> Buffer for MultiPolygon<F> {
     fn buffer_with_style(&self, style: BufferStyle<Self::Scalar>) -> MultiPolygon<Self::Scalar> {
         let rewound = self.orient(Direction::Reversed);
         let subject = rewound.rings().map(ring_to_shape_path).collect::<Vec<_>>();
-        let shapes = subject.outline(style.outline_style());
+        let shapes = subject.outline(&style.outline_style());
         multi_polygon_from_shapes(shapes)
     }
 }
